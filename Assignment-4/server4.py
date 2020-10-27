@@ -17,7 +17,8 @@ serversocket.listen(5)
 
 while True:
    # establish a connection
-   clientsocket,addr = serversocket.accept()      
+   clientsocket,addr = serversocket.accept()  
+   print("Connected to client:",clientsocket)    
    receivedData = ''
    # data received from client 1024 bytes at a time
    data = clientsocket.recv(1024).decode('ascii')
