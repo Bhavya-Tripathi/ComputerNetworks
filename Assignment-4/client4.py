@@ -1,21 +1,18 @@
 import socket
 
-# creating a socket object
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+#creating a socket object
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-# getting local machine name
-host = socket.gethostname()                           
+#getting local device info
+host = socket.gethostname()
 
-port = 8080
+port = 5005
 
-# connection to hostname on the port.
-s.connect((host, port))       
-#taking input from user                        
-inputString = input("Enter the string for checking if it is a palindrome: ")
-# sending input to convert lowercase to uppercase
-s.send(inputString.encode('ascii'))
-# Receiving the upper case string 1024 bytes at a time
-outputString = (s.recv(1024))                                  
+#get the palindrome string
+data = input("Enter the string to test as a palindrome: ").encode('ascii')
 
-s.close()
-print (outputString.decode('ascii'))
+
+s.sendto(data,(host,port)) #No "connect" is needed. Directly message bheja
+
+data, addr = s.recvfrom(10240) #recv size is large...cause why not.
+print(data)
