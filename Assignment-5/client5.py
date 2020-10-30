@@ -14,5 +14,5 @@ data = (input("Enter the integer: ")).encode('ascii') #encodes number for transm
 
 s.sendto(data,(host,port)) #No "connect" is needed. Directly message bheja
 
-data, addr = s.recvfrom(10240) #recv size is large...cause why not.
+data, addr = s.recvfrom(10240) #recv size is large....cause why not.
 print(data)
